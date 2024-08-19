@@ -8,7 +8,7 @@
       body {
         font-family: Arial, sans-serif;
         margin: 0;
-        padding: 0;
+        padding: 0 0 0 0px;
         display: flex;
         background-color: #f8f9fa;
       }
@@ -114,11 +114,12 @@
         margin-bottom: 40px;
         /* gap: 20px; */
       }
-      .ratingChart {
+      .ratingCard {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 40px;
+        font-size: 1px;
         gap: 20px;
       }
 
@@ -131,8 +132,7 @@
 
         background-color: white;
 
-        /* Center the background image */
-        color: black; /* Ensure text is readable against the background */
+        color: black;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
@@ -244,16 +244,6 @@
         gap: 50px;
       }
 
-      /* .charge-item {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        padding: 20px;
-
-        background-position: center;
-      } */
-
       .charge-item img {
         width: 50px;
         height: 50px;
@@ -326,6 +316,10 @@
         .nav-links li {
           margin: 10px 0;
         }
+      }
+      .features span {
+        display: block;
+        margin-bottom: 5px;
       }
     </style>
   </head>
@@ -495,14 +489,46 @@
         </section>
 
         <section class="charts">
-          <img src="assets/shareHold.png" alt="" />
+          <img src="assets/shareHoldAngel.png" alt="" />
+        </section>
+        <section class="charts">
+          <img src="assets/shareHoldZerodha.png" alt="" />
         </section>
         <section class="diffs">
           <img src="assets/diffs.png" alt="" />
         </section>
 
+        <div class="ratingCard">
+          <div class="card">
+            <img src="assets/angelone-logo.png" alt="Angel One" />
+            <h2>Angel One</h2>
+            <div class="star-rating">
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star empty-star">&#9733;</span>
+            </div>
+            <p class="rating">4.7</p>
+
+            <button>Open Demat Account</button>
+          </div>
+          <div class="card">
+            <img src="assets/zerodha-logo.png" alt="Angel One" />
+            <h2>Angel One</h2>
+            <div class="star-rating">
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star">&#9733;</span>
+              <span class="star empty-star">&#9733;</span>
+            </div>
+            <p class="rating">4.7</p>
+            <button>Open Demat Account</button>
+          </div>
+        </div>
         <div class="charts">
-          <img src="assets/ratingChart.png" alt="" />
+          <img src="assets/financialLast.png" alt="" />
         </div>
       </div>
     </main>
