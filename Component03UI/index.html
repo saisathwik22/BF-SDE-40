@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluestock Comparison</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        background-color: #f8f9fa;
+      }
+
+      header {
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar .logo img {
+        height: auto;
+        width: 100px;
+      }
+
+      .navbar .logo h1 {
+        margin-left: 10px;
+      }
+
+      .navbar nav ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar nav ul li {
+        margin-right: 20px;
+      }
+
+      .navbar nav ul li a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .auth-buttons button {
+        margin-left: 10px;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .auth-buttons button:first-child {
+        background-color: #f1f1f1;
+      }
+
+      .auth-buttons button:last-child {
+        background-color: #0056ff;
+        color: white;
+      }
+
+      aside {
+        width: 200px;
+        padding: 150px 90px;
+        background-color: #f8f9fa;
+        height: 100vh;
+        position: fixed;
+      }
+
+      aside ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      aside ul li {
+        padding: 15px 20px;
+        font-size: 19px;
+        color: #6104da;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      aside ul li:hover {
+        background-color: #e9ecef;
+      }
+
+      main {
+        margin-left: 220px;
+        padding: 150px 200px;
+        width: calc(100% - 220px);
+      }
+
+      .comparison {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+        /* gap: 20px; */
+      }
+      .ratingChart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+        gap: 20px;
+      }
+
+      .card {
+        height: 50%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 25px;
+        text-align: center;
+
+        background-color: white;
+
+        /* Center the background image */
+        color: black; /* Ensure text is readable against the background */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h2 {
+        margin-bottom: 10px;
+      }
+
+      .card .rating {
+        font-size: 24px;
+        color: #ffd700;
+        margin-bottom: 20px;
+      }
+
+      .card button {
+        background-color: #00c291;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .card button:hover {
+        background-color: #00a377;
+      }
+
+      .vs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        width: 10%;
+      }
+
+      .charts,
+      .charges {
+        margin-bottom: 40px;
+      }
+
+      .charges h2 {
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      table th,
+      table td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      table th {
+        background-color: #0056ff;
+        color: white;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .star-rating {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .star-rating .star {
+        font-size: 24px;
+        color: gold;
+        margin-right: 2px;
+      }
+
+      .star-rating .empty-star {
+        color: lightgray;
+      }
+
+      .rating {
+        margin-bottom: 10px;
+      }
+
+      .container {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .brokerage-charges,
+      .complaints,
+      .share-holding {
+        margin-bottom: 40px;
+      }
+
+      .charges-grid {
+        display: grid;
+        justify-content: center;
+        width: 400px;
+        padding-left: 300px;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        grid-template-rows: repeat(3, auto); /* 3 rows */
+        gap: 50px;
+      }
+
+      /* .charge-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 20px;
+
+        background-position: center;
+      } */
+
+      .charge-item img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+
+      .charge-value img {
+        height: 100%;
+        width: 50%;
+      }
+
+      .charge-label {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .charts img {
+        height: auto;
+        width: 600px;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 200px;
+      }
+
+      .diffs img {
+        height: auto;
+        width: 800px;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 200px;
+      }
+
+      .complaints img,
+      .share-holding img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+        }
+
+        .navbar nav ul {
+          display: none;
+        }
+
+        .navbar .hamburger {
+          display: flex;
+        }
+
+        .navbar .hamburger.active + .nav-links {
+          display: flex;
+        }
+
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          background-color: #fff;
+          width: 100%;
+          padding: 10px 0;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links li {
+          margin: 10px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="logo">
+          <img src="assets/logo.png" alt="Bluestock Logo" />
+          <h1>BLUESTOCK</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Media</a></li>
+            <li><a href="#">Brokers</a></li>
+            <li><a href="#">Live News</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <button>Sign In</button>
+          <button>Sign Up Now</button>
+        </div>
+      </div>
+    </header>
+
+    <aside>
+      <ul>
+        <li>Active Clients</li>
+        <li>Charges</li>
+        <li>Complaints</li>
+        <li>Share Holding</li>
+        <li>Pros & Cons</li>
+        <li>Ratings</li>
+        <li>Financials</li>
+      </ul>
+    </aside>
+
+    <main>
+      <section class="comparison">
+        <div class="card">
+          <img src="assets/angelone-logo.png" alt="Angel One" />
+          <h2>Angel One</h2>
+          <div class="star-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star empty-star">&#9733;</span>
+          </div>
+          <p class="rating">4.7</p>
+          <button>Open Demat Account</button>
+        </div>
+        <div class="vs">
+          <p>vs</p>
+        </div>
+        <div class="card">
+          <img src="assets/zerodha-logo.png" alt="Zerodha" />
+          <h2>Zerodha</h2>
+          <div class="star-rating">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star empty-star">&#9733;</span>
+          </div>
+          <p class="rating">4.6</p>
+          <button>Open Demat Account</button>
+        </div>
+      </section>
+
+      <section class="charts">
+        <img src="assets/activeClientschrat.png" alt="" />
+      </section>
+
+      <section class="charges">
+        <h2>Account Opening and Maintenance Charges</h2>
+        <table>
+          <tr>
+            <th>Charges</th>
+            <th>Angel One</th>
+            <th>Zerodha</th>
+          </tr>
+          <tr>
+            <td>Account Opening Charges</td>
+            <td>0</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>Account Maintenance Charges</td>
+            <td>₹0 for the first year then ₹23.6/Month</td>
+            <td>₹300 per year</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="charges">
+        <h2>Brokerage Charges</h2>
+        <table>
+          <tr>
+            <th>Brokerage Charges</th>
+            <th>Angel One</th>
+            <th>Zerodha</th>
+          </tr>
+          <tr>
+            <td>Intraday</td>
+            <td>₹20 or 0.25% (Whichever is lower)</td>
+            <td>₹20 or 0.03% / executed order whichever is lower</td>
+          </tr>
+          <tr>
+            <td>Futures</td>
+            <td>₹20 or 0.25% (Whichever is lower)</td>
+            <td>₹20 or 0.03% / executed order whichever is lower</td>
+          </tr>
+          <tr>
+            <td>Options</td>
+            <td>₹20 or 0.25% (Whichever is lower)</td>
+            <td>₹20 per executed order (on Turnover)</td>
+          </tr>
+          <tr>
+            <td>Delivery</td>
+            <td>Zero</td>
+            <td>Zero</td>
+          </tr>
+        </table>
+      </section>
+
+      <div class="container">
+        <section class="brokerage-charges">
+          <h2>Brokerage Charges</h2>
+          <div class="charges-grid">
+            <div class="charge-item">
+              <div class="charge-value">
+                <img src="assets/angel23.png" alt="" />
+              </div>
+            </div>
+            <div class="charge-item">
+              <div class="charge-value">
+                <img src="assets/zerodha59.png" alt="" />
+              </div>
+            </div>
+            <div class="charge-item">
+              <div class="charge-value">
+                <img src="assets/angel20.png" alt="" />
+              </div>
+            </div>
+            <div class="charge-item">
+              <div class="charge-value">
+                <img src="assets/zerodha50.png" alt="" />
+              </div>
+            </div>
+            <div class="charge-item">
+              <div class="charge-value">
+                <img src="assets/angel15.png" alt="" />
+              </div>
+            </div>
+            <div class="charge-item">
+              <div class="charge-value">
+                <img src="assets/zerodha15.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="charts">
+          <img src="assets/complaints.png" alt="" />
+        </section>
+
+        <section class="charts">
+          <img src="assets/shareHold.png" alt="" />
+        </section>
+        <section class="diffs">
+          <img src="assets/diffs.png" alt="" />
+        </section>
+
+        <div class="charts">
+          <img src="assets/ratingChart.png" alt="" />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
